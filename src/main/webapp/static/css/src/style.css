@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.container {
+
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header {
+    background-image: url('images/header-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 50px;
+    min-height: 50px;
+    border-bottom: #FFA500 3px solid;
+}
+header a {
+    color: #FFFFFF;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+header ul {
+    padding: 0;
+    list-style: none;
+}
+header li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+#branding h1 {
+     position: relative;
+     top: -20px;
+    font-family: "Playwrite FR Trad", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+ }
+
+.logo {
+    position: relative;
+    top: 20px;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+header .highlight, header .current a {
+    color: #FFA500;
+    font-weight: bold;
+}
+header a:hover {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.banner {
+    background: url('images/header-background.jpg') no-repeat center center/cover;
+    color: #b68181;
+    min-height: 250px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.banner h1 {
+    padding-top: 150px;
+    font-size: 2.5em;
+}
+.main-col {
+    float: left;
+    width: 70%;
+}
+.block {
+    padding: 20px;
+    background: white;
+    margin: 20px auto;
+    transition: transform 0.3s ease;
+}
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.block {
+    padding: 30px;
+    background: white;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.block:hover {
+    transform: scale(1.05);
+}
+
+.other-shelters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.other-shelters .animal-block {
+    width: calc(33.333% - 20px);
+    margin: 20px auto;
+}
+
+.arrow {
+    cursor: pointer;
+    user-select: none;
+}
+
+.arrow.disabled {
+    opacity: 0.5;
+    cursor: default;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="container">
+            <div id="branding">
+                <h1><img src="resources/images/logo.png"
+                         alt="Логотип" class="logo">Усы, лапы и хвосты</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="index.html">О нас</a></li>
+                    <li><a href="animalcards.html">Хвостики</a></li>
+                    <li><a href="vet.html">Ветеринарные клиники</a></li>
+                    <li><a href="blog.html">Блог</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="help.html">Как нам помочь</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<h1>Новости</h1>
+<div id="news-container">
+    <div class="news-item">
+        <div class="news-title">Заголовок новости 1</div>
+        <div class="news-date">13 июля 2024</div>
+        <div class="news-content">
+            <p>Это пример содержания новости. Здесь вы можете разместить текст новости, изображения и другие элементы.</p>
+        </div>
+    </div>
+    <div class="news-item">
+        <div class="news-title">Заголовок новости 2</div>
+        <div class="news-date">12 июля 2024</div>
+        <div class="news-content">
+            <p>Это пример содержания второй новости. Вы можете добавить столько новостей, сколько вам нужно.</p>
+        </div>
+    </div>
+</div>
+<div class="add-news" onclick="addNews()">+ Добавить новость</div>
+
+<form id="news-form">
+    <input type="text" id="news-title" placeholder="Заголовок новости" required>
+    <textarea id="news-content" placeholder="Содержание новости" required></textarea>
+    <button type="submit">Добавить новость</button>
+</form>
+
+<script>
+    document.getElementById('news-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const title = document.getElementById('news-title').value;
+        const content = document.getElementById('news-content').value;
+
+        if (title && content) {
+            fetch('http://localhost:8080/add-news', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, content })
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Ошибка:', error));}
+
+
+        .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    const newsContainer = document.getElementById('news-container');
+                    const newNewsItem = document.createElement('div');
+                    newNewsItem.className = 'news-item';
+                    newNewsItem.innerHTML = `
+                    <div class="news-title">${title}</div>
+                    <div class="news-date">${new Date().toLocaleDateString()}</div>
+                    <div class="news-content">
+                        <p>${content}</p>
+                    </div>
+                `;
+                    newsContainer.appendChild(newNewsItem);
+
+                    document.getElementById('news-form').reset();
+                })
+                .catch(error => console.error('Ошибка:', error));
+        }
+    });
+</script>
+</body>
+</html>
