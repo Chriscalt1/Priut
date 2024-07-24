@@ -19,4 +19,4 @@ if ($result->num_rows > 0) {
 }
 
 $priut->close();
-?>
+

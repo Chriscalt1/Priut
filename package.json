@@ -1,7 +1,14 @@
 {
-  "dependencies": {
-    "express": "^4.19.2",
-    "mongoose": "^8.4.5",
-    "mysql": "^2.18.1"
-  }
+  "name": "priut",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chriscalt1/Priut.git"
+  },
+  "private": true
 }
