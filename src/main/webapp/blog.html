@@ -19,7 +19,7 @@
             <nav>
                 <ul>
                     <li class="current"><a href="index.html">О нас</a></li>
-                    <li><a href="animalcards.html">Хвостики</a></li>
+                    <li><a href="anim.php">Хвостики</a></li>
                     <li><a href="vet.html">Ветеринарные клиники</a></li>
                     <li><a href="blog.html">Блог</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
@@ -29,72 +29,44 @@
         </div>
     </div>
 </header>
+<div class="blog-container">
+    <h1>Блог</h1>
+    <p>Уважаемые будущие хозяева! Мы размещаем здесь все новости и отчеты по нашей деятельности. Рекламу мы размещаем только от наших партнеров-ветеринарных клиник!</p>
 
-<h1>Новости</h1>
-<div id="news-container">
-    <div class="news-item">
-        <div class="news-title">Заголовок новости 1</div>
-        <div class="news-date">13 июля 2024</div>
-        <div class="news-content">
-            <p>Это пример содержания новости. Здесь вы можете разместить текст новости, изображения и другие элементы.</p>
-        </div>
-    </div>
-    <div class="news-item">
-        <div class="news-title">Заголовок новости 2</div>
-        <div class="news-date">12 июля 2024</div>
-        <div class="news-content">
-            <p>Это пример содержания второй новости. Вы можете добавить столько новостей, сколько вам нужно.</p>
-        </div>
+    <div class="latest-posts">
+        <h2>Последние публикации:</h2>
+        <ul>
+            <li onclick="togglePost(this)">
+                Превью статьи 1
+                <div class="post-content">
+                    <h3>Полная версия статьи 1</h3>
+                    <p>Здесь идет полный текст статьи. Вы можете добавить больше контента по мере необходимости.</p>
+                </div>
+            </li>
+            <li onclick="togglePost(this)">
+                Превью статьи 2
+                <div class="post-content">
+                    <h3>Полная версия статьи 2</h3>
+                    <p>Здесь идет полный текст статьи. Вы можете добавить больше контента по мере необходимости.</p>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
-<div class="add-news" onclick="addNews()">+ Добавить новость</div>
-
-<form id="news-form">
-    <input type="text" id="news-title" placeholder="Заголовок новости" required>
-    <textarea id="news-content" placeholder="Содержание новости" required></textarea>
-    <button type="submit">Добавить новость</button>
-</form>
 
 <script>
-    document.getElementById('news-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const title = document.getElementById('news-title').value;
-        const content = document.getElementById('news-content').value;
-
-        if (title && content) {
-            fetch('http://localhost:8080/add-news', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ title, content })
-            })
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error('Ошибка:', error));}
-
-
-        .then(response => response.text())
-                .then(data => {
-                    console.log(data);
-                    const newsContainer = document.getElementById('news-container');
-                    const newNewsItem = document.createElement('div');
-                    newNewsItem.className = 'news-item';
-                    newNewsItem.innerHTML = `
-                    <div class="news-title">${title}</div>
-                    <div class="news-date">${new Date().toLocaleDateString()}</div>
-                    <div class="news-content">
-                        <p>${content}</p>
-                    </div>
-                `;
-                    newsContainer.appendChild(newNewsItem);
-
-                    document.getElementById('news-form').reset();
-                })
-                .catch(error => console.error('Ошибка:', error));
-        }
-    });
+    function togglePost(element) {
+        const activeElements = document.querySelectorAll('.latest-posts li.active');
+        activeElements.forEach(el => {
+            if (el !== element) {
+                el.classList.remove('active');
+            }
+        });
+        element.classList.toggle('active');
+    }
 </script>
+
+
+</div>
 </body>
 </html>

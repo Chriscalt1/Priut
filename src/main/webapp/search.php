@@ -1,13 +1,33 @@
 <?php
-require 'config.php';
+$servername = "localhost";
+$username = "root";
+$password = "Kjvnbr97#7-1";
+$dbname = "priut";
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-$searchTerm = json_decode(file_get_contents('php://input'), true)['searchTerm'];
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-$pdo = new PDO('mysql:host=localhost;dbname=priut', 'root', 'Kjvnbr97#7-1');
+$searchQuery = isset($_GET['query']) ? $_GET['query'] : '';
 
-$stmt = $pdo->prepare("SELECT * FROM animals WHERE вид LIKE ?");
-$stmt->execute([$searchTerm . '%']);
+$sql = "SELECT изображение, имя, возраст, вид, краткое_описание, здоров FROM animals";
 
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (!empty($searchQuery)) {
+    $searchQuery = $conn->real_escape_string($searchQuery);
+    $sql .= " WHERE имя LIKE '%$searchQuery%' OR вид LIKE '%$searchQuery%'";
+}
 
+$result = $conn->query($sql);
+$results = [];
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $results[] = $row;
+    }
+}
+
+header('Content-Type: application/json');
 echo json_encode($results);
+
+$conn->close();

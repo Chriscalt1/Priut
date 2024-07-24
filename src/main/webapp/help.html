@@ -20,7 +20,7 @@
             <nav>
                 <ul>
                     <li class="current"><a href="index.html">О нас</a></li>
-                    <li><a href="animalcards.html">Хвостики</a></li>
+                    <li><a href="anim.php">Хвостики</a></li>
                     <li><a href="vet.html">Ветеринарные клиники</a></li>
                     <li><a href="blog.html">Блог</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
@@ -33,27 +33,15 @@
 
 <h1>Поддержите наш приют для животных</h1>
 <p>Ваше пожертвование поможет нам предоставить уход и поддержку бездомным животным.</p>
-
+<h2>Пожертвования осущесвтляются посредством перевода на кошелька ЮМани нашего руководителя.
+    Отчеты о расходах читайте в блоге!</h2>
 <div class="donation-form">
-    <h2>Форма пожертвования</h2>
     <form id="donationForm">
-        <label for="amount">Сумма пожертвования:</label>
-        <input type="number" id="amount" name="amount" min="1" required><br><br>
-        <label for="fullName">Ваше имя:</label>
-        <input type="text" id="fullName" name="fullName" required><br><br>
-        <input type="submit" value="Пожертвовать">
+        <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=143G0AUUQ73.240720&"
+                width="330" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
     </form>
 </div>
 
-<script>
-    document.getElementById('donationForm').onsubmit = function(event) {
-        event.preventDefault();
-        var donationAmount = document.getElementById('amount').value;
-        var donorName = document.getElementById('fullName').value;
-        alert('Спасибо, ' + donorName + ', за ваше пожертвование в размере ' + donationAmount + ' рублей!');
-        // Здесь может быть код для обработки платежа
-    };
-</script>
 
 </body>
 </html>

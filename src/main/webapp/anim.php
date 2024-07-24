@@ -24,7 +24,7 @@
             <nav>
                 <ul>
                     <li class="current"><a href="index.html">О нас</a></li>
-                    <li><a href="animalcards.html">Хвостики</a></li>
+                    <li><a href="anim.php">Хвостики</a></li>
                     <li><a href="vet.html">Ветеринарные клиники</a></li>
                     <li><a href="blog.html">Блог</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
@@ -41,16 +41,20 @@
         <p>Каждый питомец заслуживает счастья! Найдите питомца под Ваши предпочтения и нужды.</p>
     </div>
 </div>
-<h1>Search</h1>
-<label for="query">Найди своего будущего друга:</label>
-<input type="text" id="query" placeholder="Поиск по видам, возрасту и здоровью">
-<button onclick="search()">Искать</button>
+<h1>Поисковик</h1>
+
+<label for="query">Найди своего будущего друга!</label>
+
+<form id="searchForm">
+    <input type="text" id="searchQuery" name="query" placeholder="Введите имя или вид">
+    <button type="submit">Поиск</button>
+</form>
 <div id="results"></div>
 
-<script src="animals.js"></script>
-<div id="animal-cards">
-</div>
+<script src="search.js"></script>
 
+<?php
+require 'config.php';?>
 
 </body>
 </html>
