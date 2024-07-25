@@ -1,14 +1,13 @@
  let offset = 0;
-    const limit = 9; // Number of records to fetch per request
-    let loading = false; // Flag to prevent multiple requests
-    let allDataLoaded = false; // Flag to indicate all data has been loaded
+    const limit = 9;
+    let loading = false;
+    let allDataLoaded = false;
 
     window.addEventListener('scroll', () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !loading && !allDataLoaded) {
     loadMoreCards();
 }
 });
-
     function loadMoreCards() {
     loading = true;
     fetch(`config.php?limit=${limit}&offset=${offset}`)
