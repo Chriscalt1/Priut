@@ -1,6 +1,11 @@
 const clinics = [
-    { name: "Ветеринарная клиника А", rating: 4.5, url: "http://clinic-a.com" },
-    { name: "Ветеринарная клиника Б", rating: 4.7, url: "http://clinic-b.com" },
+    { name: "Ветеринарная клиника Лапки", rating: 4.5, url: "http://clinic-a.com" },
+    { name: "Ветеринарная клиника Лапочка", rating: 4.8, url: "http://clinic-b.com" },
+    { name: "Ветеринарная клиника Здоровый Хвост", rating: 4.7, url: "http://clinic-b.com" },
+    { name: "Ветеринарная клиника Добрый Доктор", rating: 4.7, url: "http://clinic-b.com" },
+    { name: "Ветеринарная клиника Пушистик", rating: 4.7, url: "http://clinic-b.com" },
+    { name: "Ветеринарная клиника Кот и Пёс", rating: 4.7, url: "http://clinic-b.com" },
+    { name: "Ветеринарная клиника Верный Друг", rating: 4.7, url: "http://clinic-b.com" },
 
 ];
 

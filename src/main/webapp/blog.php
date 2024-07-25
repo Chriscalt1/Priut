@@ -7,81 +7,68 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <title>Блог</title>
 </head>
 <body>
 <header>
     <div class="container">
-        <div class="container">
-            <div id="branding">
-                <h1><img src="resources/images/logo.png"
-                         alt="Логотип" class="logo">Усы, лапы и хвосты</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li class="current"><a href="index.html">О нас</a></li>
-                    <li><a href="anim.php">Хвостики</a></li>
-                    <li><a href="vet.html">Ветеринарные клиники</a></li>
-                    <li><a href="blog.html">Блог</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
-                    <li><a href="help.html">Как нам помочь</a></li>
-                </ul>
-            </nav>
+        <div id="branding">
+            <h1><img src="resources/images/logo.png" alt="Логотип" class="logo">Усы, лапы и хвосты</h1>
         </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="index.html">О нас</a></li>
+                <li><a href="anim.php">Хвостики</a></li>
+                <li><a href="vet.html">Ветеринарные клиники</a></li>
+                <li><a href="blog.php">Блог</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="help.html">Как нам помочь</a></li>
+            </ul>
+        </nav>
     </div>
 </header>
+
 <div class="blog-container">
-    <h1>Блог</h1>
-    <p>Уважаемые будущие хозяева! Мы размещаем здесь все новости и отчеты по нашей деятельности. Рекламу мы размещаем только от наших партнеров-ветеринарных клиник!</p>
+    <h1>Наш блог</h1>
+    <p>Дорогие читатели! Здесь мы публикуем новости и отчеты о нашей работе. Рекламные материалы размещаем только от партнеров — ветеринарных клиник!</p>
 
-    <div class="latest-posts">
-        <h2>Последние публикации:</h2>
-        <ul>
-            <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "Kjvnbr97#7-1";
-            $dbname = "blog";
-
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $sql = "SELECT id, title, content FROM posts";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<li onclick=\"togglePost(this)\">";
-                    echo $row["title"];
-                    echo "<div class='post-content'>";
-                    echo "<h3>" . $row["title"] . "</h3>";
-                    echo "<p>" . $row["content"] . "</p>";
-                    echo "</div>";
-                    echo "</li>";
-                }
-            } else {
-                echo "0 results";
-            }
-            $conn->close();
-            ?>
-        </ul>
+    <div class="links-container" id="news-container">
+        <div class="link-block current">
+            <a href="otchetjune2024.html">Отчет за июнь 2024</a>
+        </div>
+        <div class="link-block">
+            <a href="belolapka.html">Срочная помощь для нашей подруги Белолапки из приюта "Свет маяка"</a>
+        </div>
+        <div class="link-block">
+            <a href="lapki.html">Ветеринарная клиника "Лапки"</a>
+        </div>
+        <div class="link-block">
+            <a href="15june.html">Праздник 15 июня: Юннатское движение</a>
+        </div>
+    </div>
+    <div class="navigation-arrows">
+        <span class="arrow-left" onclick="previousSlide()">&larr;</span>
+        <span class="arrow-right" onclick="nextSlide()">&rarr;</span>
     </div>
 </div>
+<script src="news.js"></script>
+<script src="scriptd.js"></script>
+<div id="popup-container"></div>
+<div class="overlay"></div>
 
 <script>
-    function togglePost(element) {
-        const activeElements = document.querySelectorAll('.latest-posts li.active');
-        activeElements.forEach(el => {
-            if (el !== element) {
-                el.classList.remove('active');
-            }
-        });
-        element.classList.toggle('active');
-    }
+    fetch('popup.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('popup-container').innerHTML = data;
+            document.dispatchEvent(new Event('DOMContentLoaded'));
+        })
+        .catch(error => console.error('Error loading popup:', error));
 </script>
 
-
+<footer>
+    <p>&copy; 2024 Приют для животных "Лучший друг"</p>
+</footer>
 </body>
 </html>

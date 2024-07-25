@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
         rootMargin: '0px',
         threshold: 0.1
     });
-    const blocks = document.querySelectorAll('.container1, .pet.block');
+    const blocks = document.querySelectorAll('.container1, .pet.block, .clinics-container, .clinic-card');
     blocks.forEach(block => {
         observer.observe(block);
     });
